@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Instagram OSINT Tool</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4">Instagram OSINT</h1>
+    <form action="/scan" method="POST" class="flex space-x-2 mb-4">
+      <input type="text" name="username" placeholder="Enter Instagram username" required class="flex-1 border p-2 rounded">
+      <button class="bg-blue-500 text-white px-4 rounded">Scan</button>
+    </form>
+
+    <% if (typeof result !== 'undefined') { %>
+      <div class="mt-4">
+        <h2 class="text-xl font-semibold mb-2">Result</h2>
+        <img src="<%= result.profile_pic_url %>" alt="Profile Picture" class="w-24 h-24 rounded-full mb-2">
+        <ul class="text-sm space-y-1">
+          <li><strong>Full Name:</strong> <%= result.full_name %></li>
+          <li><strong>Username:</strong> <%= result.username %></li>
+          <li><strong>Bio:</strong> <%= result.bio %></li>
+          <li><strong>Link:</strong> <a href="<%= result.external_url %>" class="text-blue-600" target="_blank"><%= result.external_url %></a></li>
+          <li><strong>Followers:</strong> <%= result.followers %></li>
+          <li><strong>Following:</strong> <%= result.following %></li>
+          <li><strong>Posts:</strong> <%= result.posts %></li>
+          <li><strong>Private:</strong> <%= result.is_private ? "Yes" : "No" %></li>
+        </ul>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
